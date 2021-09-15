@@ -1,0 +1,35 @@
+{
+    "env": {
+        "dev": {
+            "presets": [
+                [
+                    "@babel/preset-env",
+                    {
+                        "useBuiltIns": "usage",
+                        "corejs": 3
+                    }
+                ]
+            ],
+            "plugins": [
+                [
+                    "@babel/plugin-transform-runtime",
+                    {
+                        "regenerator": true
+                    }
+                ]
+            ]
+        },
+        "test": {
+            "presets": [
+                [
+                    "@babel/preset-env",
+                    {
+                        "targets": {
+                            "node": "current"
+                        }
+                    }
+                ]
+            ]
+        }
+    }
+}
