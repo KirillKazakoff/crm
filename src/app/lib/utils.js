@@ -5,13 +5,6 @@ export function getRandomInt(min, max) {
     return Math.floor(Math.random() * (maxInt - minInt)) + minInt;
 }
 
-export function goToTable(db) {
-    const notes = Object.values(db);
-    const resultArr = notes.map(noteTransform);
-    
-    return resultArr;
-}
-
 export const noteTransform = (note) => ({
     title: note.title,
     cost: note.cost,
@@ -26,7 +19,14 @@ export const noteTransform = (note) => ({
             {
                 block: 'div',
                 cls: 'table__button button__edit',
-            }
-        ]
+            },
+        ],
     },
-})
+});
+
+export function goToTable(db) {
+    const notes = Object.values(db);
+    const resultArr = notes.map(noteTransform);
+
+    return resultArr;
+}

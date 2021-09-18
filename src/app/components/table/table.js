@@ -1,8 +1,8 @@
+/* eslint-disable no-param-reassign */
 import './table.css';
 import { tableT, tableRowT } from './table.template';
 import { noteTransform } from '../../lib/utils';
 import engine from '../../lib/engine/engine';
-
 
 import Form from '../form/form';
 
@@ -13,11 +13,10 @@ export default class Table {
         this.form = new Form(this.container);
         this.form.node.addEventListener('submit', (e) => this.onFormSubmit(e));
 
-
         this.addButton = document.querySelector('.plus-sign');
         this.addButton.addEventListener('click', () => this.form.show());
         this.container.addEventListener('click', (e) => this.onEdit(e));
-        this.container.addEventListener('click', (e) => this.onRemove(e));
+        this.container.addEventListener('click', (e) => Table.onRemove(e));
 
         window.addEventListener('beforeunload', () => this.onWindowClose());
     }
@@ -39,8 +38,8 @@ export default class Table {
 
                     Object.entries(note).forEach(([key, value]) => {
                         if (key === keyTd) td.textContent = value;
-                    })
-                })
+                    });
+                });
 
                 this.edited = null;
                 return;
@@ -49,10 +48,9 @@ export default class Table {
             const noteTmp = noteTransform(note);
             const newNote = engine(tableRowT(noteTmp));
             this.container.insertAdjacentHTML('beforeend', newNote);
-            
+
             this.form.clearFields();
         }
-
     }
 
     onEdit(e) {
@@ -60,19 +58,19 @@ export default class Table {
             const noteEl = e.target.closest('.table__row');
             this.edited = noteEl;
 
-            const note = this.getNoteData(noteEl);
+            const note = Table.getNoteData(noteEl);
             this.form.show(note);
         }
     }
 
-    onRemove(e) {
+    static onRemove(e) {
         if (e.target.classList.contains('button__delete')) {
             const noteEl = e.target.closest('.table__row');
             noteEl.remove();
         }
     }
 
-    getNoteData(noteEl) {
+    static getNoteData(noteEl) {
         return [...noteEl.children].reduce((total, td) => {
             const key = td.className.substring(4);
             const value = td.textContent;
@@ -81,7 +79,4 @@ export default class Table {
             return total;
         }, {});
     }
-
 }
-
-

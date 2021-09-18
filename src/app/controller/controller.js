@@ -8,7 +8,6 @@ export default class Controller {
             this.table = new Table();
             const notes = goToTable(db);
             this.table.render(notes);
-        }
+        };
     }
 }
- 

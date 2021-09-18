@@ -14,7 +14,7 @@ const rowT = (row) => ({
                 required: true,
                 name: row.name,
                 pattern: row.pattern,
-            }
+            },
         },
     ],
 });
@@ -34,10 +34,10 @@ const rowGen = (note) => {
             name: 'cost',
             type: 'text',
             pattern: '[0-9]+',
-        }
+        },
     ];
     return rowTemplates.map(rowT);
-}
+};
 
 const buttonT = (param, title, type) => ({
     block: 'button',
@@ -58,8 +58,7 @@ const formT = {
     content: [rowGen(), controlsT],
     attrs: {
         novalidate: true,
-    }
+    },
 };
 
 export default formT;
-

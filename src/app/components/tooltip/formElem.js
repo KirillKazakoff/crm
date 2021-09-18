@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import './tooltip.css';
 
 export default class FormElement {
@@ -27,10 +28,10 @@ export default class FormElement {
     }
 
     hideError() {
-        if (this.tooltip) this.tooltip.remove();       
+        if (this.tooltip) this.tooltip.remove();
     }
 
     clearField() {
         this.node.value = '';
-    }    
+    }
 }

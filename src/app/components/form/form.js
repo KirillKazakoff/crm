@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable class-methods-use-this */
 import './form.css';
 import formT from './form.tmp';
 
@@ -12,7 +14,7 @@ export default class Form {
         this.position(target);
         this.init();
         this.hide();
-        
+
         this.node.addEventListener('input', (e) => this.onInput(e));
 
         this.cancelButton = this.node.querySelector('.cancel-button');
@@ -43,10 +45,9 @@ export default class Form {
             Object.entries(note).forEach(([key, value]) => {
                 const edited = this.formElems.find((input) => input.node.name === key);
                 edited.node.value = value;
-            })
+            });
         }
     }
-
 
     clearFields() {
         this.formElems.forEach((input) => input.clearField());
@@ -70,7 +71,7 @@ export default class Form {
 
             const errorMsg = this.getInputError(node);
             elem.showError(errorMsg);
-        })
+        });
 
         return false;
     }
@@ -93,9 +94,10 @@ export default class Form {
         if (!errorMsg) {
             formElem.hideError();
             return false;
-        };
+        }
 
         formElem.showError(errorMsg);
+        return true;
     }
 
     findFormElem(node) {
@@ -109,5 +111,4 @@ export default class Form {
             return total;
         }, {});
     }
-    
-};
+}
