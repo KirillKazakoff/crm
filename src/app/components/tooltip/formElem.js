@@ -30,5 +30,7 @@ export default class FormElement {
         if (this.tooltip) this.tooltip.remove();       
     }
 
-    
+    clearField() {
+        this.node.value = '';
+    }    
 }

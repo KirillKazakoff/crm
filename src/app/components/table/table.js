@@ -49,6 +49,8 @@ export default class Table {
             const noteTmp = noteTransform(note);
             const newNote = engine(tableRowT(noteTmp));
             this.container.insertAdjacentHTML('beforeend', newNote);
+            
+            this.form.clearFields();
         }
 
     }

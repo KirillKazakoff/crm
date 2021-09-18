@@ -12,8 +12,11 @@ export default class Form {
         this.position(target);
         this.init();
         this.hide();
-
+        
         this.node.addEventListener('input', (e) => this.onInput(e));
+
+        this.cancelButton = this.node.querySelector('.cancel-button');
+        this.cancelButton.addEventListener('click', () => this.hide());
     }
 
     render() {
@@ -45,6 +48,9 @@ export default class Form {
     }
 
 
+    clearFields() {
+        this.formElems.forEach((input) => input.clearField());
+    }
 
     hide() {
         this.node.classList.remove('form__active');
